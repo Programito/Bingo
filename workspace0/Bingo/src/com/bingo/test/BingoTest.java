@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.bingo.main.Balls;
+import com.bingo.main.BingoCard;
 import com.bingo.utils.utils;
 
 
@@ -161,75 +163,28 @@ public class BingoTest {
 		Assert.assertTrue(!utils.checkBingo(card,ball));
 	}
 	
-	
-	/*@Test
-	public void CallingNumberTest(){
-		CardT cardT=new CardT();
-		int max=15;
-		int min=1;
-		//que cumplan el valor maximo y minimo
-		for(int i=0;i<5;i++){
-			for(int j=0;j<5;j++){
-				if(i!=j){
-					Assert.assertTrue(cardT.getCardT(i, j)<=max);
-					Assert.assertTrue(cardT.getCardT(i, j)>=min);
-				}
-			}
-			max=max+15;
-			min=min+15;
-		}
-		//que no tenga valores repetidos
-		for(int i=0;i<5;i++){
-			for(int k=0;k<5;k++){
-			int total=0;
-			for(int j=0;j<5;j++){
-				int valor=cardT.getCardT(k,i);
-				if(valor==cardT.getCardT(k, j)){
-					total++;
-				}
-			}
-			Assert.assertTrue(total==1);
-		}
-		}
+	@Test
+	public void checkBallTest(){
+		int[] ballsBefore={20,14,70,30,9,60,1,71};
+		Assert.assertTrue(utils.checkBall(ballsBefore, 3));
+		Assert.assertTrue(utils.checkBall(ballsBefore, 15));
+		Assert.assertTrue(!utils.checkBall(ballsBefore, 60));
+		Assert.assertTrue(!utils.checkBall(ballsBefore, 70));
 	}
 	
 	@Test
-	public void CheckBingo(){
-		CardT cardT=new CardT();
-		ArrayList<Integer> numbers=new ArrayList(); 
-		for(int i=0;i<numbers.size();i++){
-			int valor=numbers.get(i);
-			int total=0;
-			for(int j=0;j<5;j++){
-				for(int k=0;k<5;k++){
-					if(valor==cardT.getCardT(j, k)){
-						total++;
-					}
-				}
-			}
-			Assert.assertTrue(total==1);
-		}
+	public void checkBingoCard(){
+		BingoCard bingoCard= new BingoCard();
+		bingoCard.escribirBingoCard();
+		Assert.assertTrue(utils.checkCard(bingoCard.getCard()));
 	}
 	
-	public static class CardT{
-		int[][] card= {{-1,8,15,7,11},{17,-1,23,20,19},{35,41,-1,37,33},{54,48,52,-1,50},{61,68,70,74,-1}};
-		
-		public CardT(){
-			
+	@Test
+	public void checkBalls(){
+		Balls balls=new Balls();
+		for(int i=0;i<75;i++){
+			Assert.assertTrue(utils.checkBall(balls.getAnteriores(), balls.createBall()));
 		}
-		
-		public int getCardT(int i, int j){
-			return card[i][j];
-		}
-		
-		public int getSizeJ(){
-			return card[0].length;
-		}
-		
-		public int getSizeI(){
-			return card.length;
-		}
-		
-	}*/
+	}
 	
 }
